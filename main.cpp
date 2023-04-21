@@ -25,6 +25,7 @@ private:
 	node* root;// root pointer
 
 public:
+	void insert(int x);
 	BinarySearchTree();
 };
 
@@ -41,6 +42,7 @@ int main()
 	inFile.open("input.txt");
 	outFile.open("output.txt");
 	
+	//checking if i/o files opened
 	if (!inFile.good() || !outFile.good())
 	{
 		cout << "Error opening file:\n";
@@ -60,3 +62,52 @@ BinarySearchTree::BinarySearchTree() // constructor
 	outFile.open("output");
 
 } // End of constructor
+
+
+void BinarySearchTree::insert(int x)
+{
+	// Declaring pointers and setting them to null
+	node* tree = new node;
+	node* parent;
+	tree->data = x;
+	tree->leftSubTree = NULL;
+	tree->rightSubTree = NULL;
+	parent = NULL;
+
+	// Checking if it is creating a new tree
+	if (root == NULL) // 
+	{
+		root = tree;
+	}
+	else
+	{
+		// Creating a local pointer and setting it to the root node
+		node* locPtr;
+		locPtr = root;
+
+		while (locPtr != NULL)
+		{
+			parent = locPtr;
+			if (tree->data >= locPtr->data)
+			{
+				locPtr = locPtr->rightSubTree;
+			}
+			else
+			{
+				locPtr = locPtr->leftSubTree; // L < r
+			}
+		}
+
+		if (tree->data <= parent->data)
+		{
+
+			parent->leftSubTree = tree; // r < R
+		}
+		else
+		{
+			parent->rightSubTree = tree; //L < r
+		}
+	}
+
+
+}// End of insert function
