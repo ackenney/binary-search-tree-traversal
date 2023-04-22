@@ -6,6 +6,7 @@
 using std::ofstream;
 using std::ifstream;
 using std::cout;
+using std::endl;
 
 
 
@@ -26,6 +27,8 @@ private:
 
 public:
 	void insert(int x);
+	void search(int x);
+	void inOrder(node* x);
 	BinarySearchTree();
 };
 
@@ -111,3 +114,52 @@ void BinarySearchTree::insert(int x)
 
 
 }// End of insert function
+
+void BinarySearchTree::search(int x)
+{
+
+	node* locPtr = root;
+	bool foundFlag = false;
+
+	while (locPtr != NULL)
+	{
+
+		if (locPtr->data == x)
+		{
+			cout << endl << x << " is in the tree\n\n";
+			outFile << endl << x << " is in the tree\n\n";
+
+
+			return;
+		}
+
+		if (x < locPtr->data)
+		{
+			locPtr = locPtr->leftSubTree;
+		}
+		else
+		{
+			locPtr = locPtr->rightSubTree;
+		}
+
+
+	}
+	cout << endl << x << " is not the tree\n\n";
+	outFile << endl << x << " is not the tree\n\n";
+	return;
+}
+
+void BinarySearchTree::inOrder(node* x)
+{
+	// In-order: LrR
+	node* tempPtr = x;
+
+	if (tempPtr != NULL) // Declaring temp pointer
+	{
+		inOrder(tempPtr->leftSubTree);  // L
+		cout << tempPtr->data << " ";	// r (output to console)
+		outFile << tempPtr->data << " ";// r (output to file)
+		inOrder(tempPtr->rightSubTree); // R
+
+	}
+}
