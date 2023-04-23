@@ -30,6 +30,7 @@ public:
 	void search(int x);
 	void inOrder(node* x);
 	void preOrder(node* x);
+	void postOrder(node* x);
 	BinarySearchTree();
 };
 
@@ -180,3 +181,20 @@ void BinarySearchTree::preOrder(node* x)
 	}
 
 } // End of pre-order function
+
+void BinarySearchTree::postOrder(node* x)
+{
+	// Post-Order: LRr
+	node* tempPtr = x; // Declaring temp pointer
+
+	if (tempPtr != NULL)
+	{
+
+		postOrder(tempPtr->leftSubTree);  // L
+		postOrder(tempPtr->rightSubTree); // R
+		cout << tempPtr->data << " ";	  // r (output to console)
+		outFile << tempPtr->data << " ";  // r (output to file)
+	}
+
+} // End of post-order function
+
