@@ -31,6 +31,7 @@ public:
 	void inOrder(node* x);
 	void preOrder(node* x);
 	void postOrder(node* x);
+	void print();
 	BinarySearchTree();
 };
 
@@ -41,9 +42,11 @@ int main()
 	// Declaring file variables
 	ifstream inFile;
 	ofstream outFile;
+	std::string fileName;
 	int temp = 0;
 
 	// Opening i/o file
+	std::cout << "Enter file name: "; std::cin >> fileName;
 	inFile.open("input.txt");
 	outFile.open("output.txt");
 	
@@ -53,6 +56,24 @@ int main()
 		cout << "Error opening file:\n";
 		outFile << "Error opening file:\n";
 	}
+
+
+	BinarySearchTree BinarySearchTreeObj;
+
+	//insert data into bst
+	while (inFile >> temp)
+	{
+		BinarySearchTreeObj.insert(temp);
+
+	}
+
+	// Printing each order
+	BinarySearchTreeObj.print();
+
+	// Testing the search function with two hardcoded known values, one in the data set given and one not.
+	// In the program guide it did not say anything about testing this, but I still included it. 
+	BinarySearchTreeObj.search(15);
+	BinarySearchTreeObj.search(2);
 
 	// Closing i/o files files
 	inFile.close();
@@ -64,7 +85,7 @@ int main()
 BinarySearchTree::BinarySearchTree() // constructor
 {
 	root = NULL;
-	outFile.open("output");
+	outFile.open("output.txt");
 
 } // End of constructor
 
@@ -197,4 +218,26 @@ void BinarySearchTree::postOrder(node* x)
 	}
 
 } // End of post-order function
+
+void BinarySearchTree::print()
+{
+	cout << "Post-order\n"; // output to console
+	outFile << "Post-order\n"; // output to file
+	postOrder(root);
+	cout << endl << endl;
+	outFile << endl << endl;
+
+	cout << "In-order\n"; // output to console
+	outFile << "In-order\n"; // output to file
+	inOrder(root);
+	cout << endl << endl;
+	outFile << endl << endl;
+
+	cout << "Pre-order\n"; // output to console
+	outFile << "Pre-order\n"; // output to file
+	preOrder(root);
+	cout << endl << endl;
+	outFile << endl << endl;
+}
+
 
