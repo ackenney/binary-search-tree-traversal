@@ -1,0 +1,15 @@
+Post-order
+3 5 9 9 4 14 17 16 20 18 15 14 
+
+In-order
+3 4 5 9 9 14 14 15 16 17 18 20 
+
+Pre-order
+14 4 3 9 9 5 15 14 18 16 17 20 
+
+
+15 is in the tree
+
+
+2 is not the tree
+
